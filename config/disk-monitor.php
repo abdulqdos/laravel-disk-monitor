@@ -5,5 +5,5 @@ return [
     /*
      * The name of disk that you want to monitor
      */
-    "disk_name" => "local"
+    "disk_names" => ["local"],
 ];

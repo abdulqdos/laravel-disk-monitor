@@ -5,6 +5,7 @@ namespace AbdulqdosAlabinie\LaravelDiskMonitor\Commands;
 use AbdulqdosAlabinie\LaravelDiskMonitor\Models\DiskMonitorEntry;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Util\Filesystem;
 
 class RecordDiskMetricsCommand extends Command
 {
@@ -16,17 +17,21 @@ class RecordDiskMetricsCommand extends Command
     {
 
         $this->comment('Recording metrics');
-        $diskName = config('disk-monitor.disk_name');
+        collect(config('disk-monitor.disk_names'))->each(fn (string $diskName) => $this->recordMetrics($diskName));
+        $this->comment('All done');
 
-        $filesCount = count(Storage::disk($diskName)->allFiles());
+        return self::SUCCESS;
+    }
+
+    protected function recordMetrics(string $diskName): void
+    {
+        $this->info("Recording metrics for $diskName");
+        $disk = Storage::disk($diskName);
+        $filesCount = count($disk->allFiles());
 
         DiskMonitorEntry::create([
             'disk_name' => $diskName,
             'file_count' => $filesCount
         ]);
-
-        $this->comment('All done');
-
-        return self::SUCCESS;
     }
 }
