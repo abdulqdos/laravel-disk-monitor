@@ -4,7 +4,7 @@ use AbdulqdosAlabinie\LaravelDiskMonitor\Commands\RecordDiskMetricsCommand;
 use AbdulqdosAlabinie\LaravelDiskMonitor\Models\DiskMonitorEntry;
 
 beforeEach(function () {
-   Storage::fake('local'); // make a fake storage
+    Storage::fake('local'); // make a fake storage
     Storage::fake('anotherDisk'); // make a fake storage
 
 });
@@ -23,7 +23,6 @@ it('will record files in a single disk', function () {
     $this->assertCount(1, DiskMonitorEntry::get());
     $this->assertEquals(1, $last->file_count);
 
-
 });
 
 it('will record files in a multiple  disks', function () {
@@ -32,12 +31,12 @@ it('will record files in a multiple  disks', function () {
     Storage::disk('anotherDisk')->put('test.text', 'test');
 
     // Set Disks into monitor
-    config()->set('disk-monitor.disk_names', ['local' , 'anotherDisk']);
+    config()->set('disk-monitor.disk_names', ['local', 'anotherDisk']);
     $this->artisan(RecordDiskMetricsCommand::class)->assertExitCode(0);
-    $this->assertCount(2 , DiskMonitorEntry::get());
+    $this->assertCount(2, DiskMonitorEntry::get());
 
     // Define Entries
-    $entries =  DiskMonitorEntry::get();
+    $entries = DiskMonitorEntry::get();
 
     // asserts
     $this->assertEquals('local', $entries[0]->disk_name);
@@ -47,4 +46,3 @@ it('will record files in a multiple  disks', function () {
     $this->assertEquals(1, $entries[1]->file_count);
 
 });
-

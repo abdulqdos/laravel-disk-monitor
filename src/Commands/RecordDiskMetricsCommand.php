@@ -5,7 +5,6 @@ namespace AbdulqdosAlabinie\LaravelDiskMonitor\Commands;
 use AbdulqdosAlabinie\LaravelDiskMonitor\Models\DiskMonitorEntry;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
-use PHPUnit\Util\Filesystem;
 
 class RecordDiskMetricsCommand extends Command
 {
@@ -31,7 +30,7 @@ class RecordDiskMetricsCommand extends Command
 
         DiskMonitorEntry::create([
             'disk_name' => $diskName,
-            'file_count' => $filesCount
+            'file_count' => $filesCount,
         ]);
     }
 }

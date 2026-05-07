@@ -2,11 +2,11 @@
 
 namespace AbdulqdosAlabinie\LaravelDiskMonitor\Tests;
 
+use AbdulqdosAlabinie\LaravelDiskMonitor\LaravelDiskMonitorServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
-use AbdulqdosAlabinie\LaravelDiskMonitor\LaravelDiskMonitorServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -28,7 +28,7 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-//        config()->set('database.default', 'testing');
+        //        config()->set('database.default', 'testing');
         Schema::dropAllTables();
         $migration = include_once __DIR__.'/../database/migrations/create_disk_monitor_entries_table.php.stub';
         $migration->up();
@@ -38,6 +38,6 @@ class TestCase extends Orchestra
          }
          */
 
-//        Route::diskMonitor('disk-monitor');
+        //        Route::diskMonitor('disk-monitor');
     }
 }

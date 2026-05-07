@@ -2,8 +2,8 @@
 
 namespace AbdulqdosAlabinie\LaravelDiskMonitor\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 use AbdulqdosAlabinie\LaravelDiskMonitor\Models\DiskMonitorEntry;
+use Illuminate\Routing\Controller;
 
 class DiskMetricsController extends Controller
 {

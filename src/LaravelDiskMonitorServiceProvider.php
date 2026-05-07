@@ -2,12 +2,11 @@
 
 namespace AbdulqdosAlabinie\LaravelDiskMonitor;
 
+use AbdulqdosAlabinie\LaravelDiskMonitor\Commands\RecordDiskMetricsCommand;
 use AbdulqdosAlabinie\LaravelDiskMonitor\Http\Controllers\DiskMetricsController;
-use AbdulqdosAlabinie\LaravelDiskMonitor\Models\DiskMonitorEntry;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use AbdulqdosAlabinie\LaravelDiskMonitor\Commands\RecordDiskMetricsCommand;
 
 class LaravelDiskMonitorServiceProvider extends PackageServiceProvider
 {
@@ -25,14 +24,13 @@ class LaravelDiskMonitorServiceProvider extends PackageServiceProvider
             ->hasMigration('create_laravel_disk_monitor_table')
             ->hasCommand(RecordDiskMetricsCommand::class);
 
-
     }
 
     public function packageRegistered(): void
     {
         Route::macro('diskMonitor', function (string $prefix) {
             Route::prefix($prefix)->group(function () {
-                Route::get('/' , [DiskMetricsController::class , '__invoke']);
+                Route::get('/', [DiskMetricsController::class, '__invoke']);
             });
         });
     }
