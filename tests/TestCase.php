@@ -3,6 +3,7 @@
 namespace AbdulqdosAlabinie\LaravelDiskMonitor\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use AbdulqdosAlabinie\LaravelDiskMonitor\LaravelDiskMonitorServiceProvider;
@@ -36,5 +37,7 @@ class TestCase extends Orchestra
             (include $migration->getRealPath())->up();
          }
          */
+
+//        Route::diskMonitor('disk-monitor');
     }
 }

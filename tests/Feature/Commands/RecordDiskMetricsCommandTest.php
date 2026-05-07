@@ -42,7 +42,7 @@ it('will record files in a multiple  disks', function () {
     // asserts
     $this->assertEquals('local', $entries[0]->disk_name);
     $this->assertEquals(0, $entries[0]->file_count);
-    
+
     $this->assertEquals('anotherDisk', $entries[1]->disk_name);
     $this->assertEquals(1, $entries[1]->file_count);
 
